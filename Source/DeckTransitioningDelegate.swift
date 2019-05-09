@@ -115,7 +115,6 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
     /// This method configures at which points a haptic feedback should be performed. It must be called prior to the transition in order to be taken into consideration.
     ///
     /// - Parameter options: The options that specify at which points haptic feedback should be performed.
-    @available(iOS 10.0, *)
     public func useHapticFeedback(at options: HapticFeedbackOptions) {
         hapticFeedbackOptions = options
     }
@@ -123,7 +122,6 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
     /// This method changes the style of the haptic feedback. The latest provided value is used throughout all ongoing transitions.
     ///
     /// - Parameter style: The style that the hatic feedback generator should use.
-    @available(iOS 10.0, *)
     public func changeFeedbackStyle(to style: UIImpactFeedbackGenerator.FeedbackStyle) {
         DeckHapticFeedbackGenerator.shared.changeFeedbackStyle(to: style)
     }

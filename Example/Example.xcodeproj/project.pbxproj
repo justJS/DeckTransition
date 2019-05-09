@@ -318,6 +318,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74N8K5J2N7;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.harshilshah.DeckTransition-Example-Wat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -334,6 +335,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74N8K5J2N7;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.harshilshah.DeckTransition-Example-Wat";
 				PRODUCT_NAME = "$(TARGET_NAME)";

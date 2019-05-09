@@ -116,7 +116,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         
         // Prepare the Taptic-Engine as early as possible!
         if hapticFeedbackOptions.contains(.whenPresenting) {
-            prepareHapticFeedback()
+            DeckHapticFeedbackGenerator.shared.prepare()
         }
         
         /// A CGRect to be used as a proxy for the frame of the presentingView
@@ -233,7 +233,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         )
         
         if hapticFeedbackOptions.contains(.whenPresenting) {
-            performHapticFeedback()
+            DeckHapticFeedbackGenerator.shared.perform()
         }
     }
     
@@ -258,7 +258,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
             return
         }
         if hapticFeedbackOptions.contains(.whenPresentingIsFinished) {
-            performHapticFeedback()
+            DeckHapticFeedbackGenerator.shared.perform()
         }
         
         presentedViewController.view.frame = frameOfPresentedViewInContainerView
@@ -474,7 +474,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         
         // Prepare the Taptic-Engine as early as possible! Even if the preparation was called from the attached gesture recognizer, calling another prepare() is not harmfull.
         if hapticFeedbackOptions.contains(.whenDismissing) {
-            prepareHapticFeedback()
+            DeckHapticFeedbackGenerator.shared.prepare()
         }
         
         let initialFrame: CGRect = {
@@ -548,7 +548,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         )
         
         if hapticFeedbackOptions.contains(.whenDismissing) {
-            performHapticFeedback()
+            DeckHapticFeedbackGenerator.shared.perform()
         }
     }
     
@@ -572,7 +572,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         
         dismissCompletion?(completed)
         if hapticFeedbackOptions.contains(.whenDismissingIsFinished) {
-            performHapticFeedback()
+            DeckHapticFeedbackGenerator.shared.perform()
         }
     }
     
@@ -661,7 +661,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
             if translation >= dismissThreshold {
                 // Prepare the Taptic-Engine as early as possible!
                 if hapticFeedbackOptions.contains(.whenDismissing) {
-                    prepareHapticFeedback()
+                    DeckHapticFeedbackGenerator.shared.prepare()
                 }
                 
                 presentedViewController.dismiss(animated: true, completion: nil)
