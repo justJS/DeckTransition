@@ -6,6 +6,7 @@
 //  Copyright © 2018 Harshil Shah. All rights reserved.
 //
 
+import AudioToolbox
 import UIKit
 
 /** This class is used to control the haptic feedback. It provides methods for configuring the style of the feedback. Currently, only impact-styled feedbacks are supported (with weight ```light```, ```medium``` or ```heavy```).
@@ -56,6 +57,17 @@ final class DeckHapticFeedbackGenerator: NSObject {
         prepare()
         
         feedbackGenerator?.impactOccurred()
+        
+        if UIDevice.current.useBasicHapticFeedback {
+            switch style {
+            case .light, .medium:
+                AudioServicesPlaySystemSound(1519) // Peek
+            case .heavy:
+                AudioServicesPlaySystemSound(1520) // Pop
+            @unknown default:
+                return
+            }
+        }
     }
     
     
@@ -64,5 +76,19 @@ final class DeckHapticFeedbackGenerator: NSObject {
     /// - Parameter style: The new style that should be used for the feedback.
     func changeFeedbackStyle(to style: UIImpactFeedbackGenerator.FeedbackStyle) {
         self.style = style
+    }
+}
+
+extension UIDevice {
+    var useBasicHapticFeedback: Bool {
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        let platform = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+        switch platform {
+        case "iPhone8,1", "iPhone8,2":
+            return true // iPhone 6s, iPhone 6s Plus
+        default:
+            return false
+        }
     }
 }
